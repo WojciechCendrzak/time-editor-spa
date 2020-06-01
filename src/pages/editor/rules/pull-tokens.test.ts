@@ -16,7 +16,7 @@ describe(pullTokens.name, () => {
     ${"01:59"}   | ${[TIME_REGEX]}             | ${[{ index: 0, value: "01:59" }]}
     ${"01:59 02:59"} | ${[TIME_REGEX, TIME_REGEX]} | ${[
   { index: 0, value: "01:59" },
-  { index: 6, value: "02:59" },
+  { index: 6, value: "02:59" }
 ]}
     ${"+01:59"}  | ${[INTERVAL_REGEX]}         | ${[{ index: 0, value: "+01:59" }]}
     ${"-01:59"}  | ${[INTERVAL_REGEX]}         | ${[{ index: 0, value: "-01:59" }]}

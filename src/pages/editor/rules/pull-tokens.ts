@@ -12,18 +12,18 @@ export const pullTokens = (
   if (!line || !isString(line) || !isArray(tokens)) return undefined;
 
   let tempLine = line;
-  const values = tokens.map((token) => {
+  const values = tokens.map(token => {
     const xArray = new RegExp(token).exec(tempLine);
 
     if (xArray) {
       const resolvedToken = {
         index: xArray.index,
-        value: xArray[0],
+        value: xArray[0]
       };
       tempLine = tempLine.replace(
         resolvedToken.value,
         range(resolvedToken.value.length)
-          .map((_) => " ")
+          .map(() => " ")
           .join("")
       );
 
@@ -32,7 +32,7 @@ export const pullTokens = (
   });
 
   const res =
-    values.filter((value) => value).length === tokens.length
+    values.filter(value => value).length === tokens.length
       ? (values as ResolvedToken[])
       : undefined;
 

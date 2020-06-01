@@ -1,24 +1,48 @@
 <template>
-  <div>
-    <h1>This is an edit page</h1>
-    <div>
-      <codemirror v-model="code" :options="cmOptions" ref="myCm"></codemirror>
+  <div class="page-container">
+    <div class="button-container">
+      <a-button type="primary">
+        Add file
+      </a-button>
     </div>
+    <a-row type="flex" :gutter="16">
+      <a-col :span="6">
+        <FileList />
+      </a-col>
+      <a-col :span="18">
+        <a-collapse default-active-key="1">
+          <a-collapse-panel
+            key="1"
+            header="This is panel header with no arrow icon"
+            :show-arrow="false"
+          >
+            <codemirror
+              v-model="code"
+              :options="cmOptions"
+              ref="myCm"
+            ></codemirror>
+          </a-collapse-panel>
+        </a-collapse>
+      </a-col>
+    </a-row>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 import { codemirror } from "vue-codemirror";
 import { insertTime } from "./commands/insert-time";
 import { applyLineRules } from "./rules/line-rules";
-import Vue from "vue";
-
+import FileList from "./components/file-list";
+import { Row, Col, Collapse } from "ant-design-vue";
 import "codemirror/lib/codemirror.css";
 
-// language js
-import "codemirror/mode/javascript/javascript.js";
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Collapse);
 
-import "codemirror/theme/base16-dark.css";
+import "codemirror/mode/javascript/javascript.js";
+import "codemirror/theme/idea.css";
 
 export default Vue.extend({
   data() {
@@ -27,7 +51,7 @@ export default Vue.extend({
       cmOptions: {
         tabSize: 4,
         mode: "text/javascript",
-        theme: "base16-dark",
+        theme: "idea",
         lineNumbers: true,
         line: true,
         autofocus: true,
@@ -63,6 +87,7 @@ export default Vue.extend({
   },
   components: {
     codemirror,
+    FileList,
   },
   computed: {
     codemirror() {
@@ -71,3 +96,27 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="less">
+.page-container {
+  margin-left: 16px;
+  margin-right: 16px;
+
+  .ant-collapse-content-box {
+    padding: 0;
+  }
+
+  .button-container {
+    margin-bottom: 16px;
+  }
+
+  .CodeMirror {
+    min-height: 300px;
+    height: auto;
+
+    .CodeMirror-scroll {
+      min-height: 300px;
+    }
+  }
+}
+</style>

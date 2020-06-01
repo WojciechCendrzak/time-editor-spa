@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>simply time estimate check</h1>
+    <h1>About</h1>
+    Simply text pattern base spreadsheet editor
   </div>
 </template>
