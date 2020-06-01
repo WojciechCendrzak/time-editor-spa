@@ -1,4 +1,7 @@
-# view-t1
+[![Netlify Status](https://api.netlify.com/api/v1/badges/99875fd8-0a3a-42dc-981d-da0496b861e2/deploy-status)](https://app.netlify.com/sites/ecstatic-cori-fe7d8e/deploys)
+
+# Time Editor
+Modern alternative pattern based text spread sheet
 
 ## Project setup
 ```
