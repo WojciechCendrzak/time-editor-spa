@@ -7,7 +7,7 @@
     </div>
     <a-row type="flex" :gutter="16">
       <a-col :span="6">
-        <FileList />
+        <FileList v-bind:fileNames="fileNames" />
       </a-col>
       <a-col :span="18">
         <a-collapse default-active-key="1">
@@ -35,6 +35,12 @@ import { insertTime } from "./commands/insert-time";
 import { applyLineRules } from "./rules/line-rules";
 import FileList from "./components/file-list";
 import { Row, Col, Collapse } from "ant-design-vue";
+import {
+  getFileNames,
+  getFileContent,
+  setFileContent,
+} from "./logic/files.service";
+
 import "codemirror/lib/codemirror.css";
 
 Vue.use(Row);
@@ -47,7 +53,8 @@ import "codemirror/theme/idea.css";
 export default Vue.extend({
   data() {
     return {
-      code: "const a = 10",
+      code: "",
+      fileNames: [],
       cmOptions: {
         tabSize: 4,
         mode: "text/javascript",
@@ -76,6 +83,13 @@ export default Vue.extend({
       this.code = newCode;
     },
   },
+  created: async function() {
+    const fileNames = await getFileNames();
+    // store.se
+    this.fileNames = fileNames;
+    const code = await getFileContent();
+    this.codemirror.setValue(code);
+  },
   watch: {
     code() {
       const { line, ch } = this.codemirror.getCursor();
@@ -83,6 +97,7 @@ export default Vue.extend({
       const res = applyLineRules(content);
       this.codemirror.setValue(res);
       this.codemirror.setCursor({ line, ch });
+      setFileContent(res);
     },
   },
   components: {

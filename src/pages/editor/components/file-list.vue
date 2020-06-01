@@ -1,9 +1,10 @@
 <template>
   <div>
-
-    <a-list size="small" bordered :data-source="data">
+    <a-list size="small" bordered :data-source="fileNames">
       <a-list-item slot="renderItem" slot-scope="item">
-        {{ item }}
+        <a-list-item-meta>
+          <a slot="title" href="#" v-on:click="itemClick">{{ item }}</a>
+        </a-list-item-meta>
       </a-list-item>
     </a-list>
   </div>
@@ -16,13 +17,12 @@ Vue.use(Button);
 Vue.use(List);
 Vue.use(Layout);
 
-const data = ["2018", "2019", "2020."];
-
 export default {
-  data() {
-    return {
-      data,
-    };
+  props: ["fileNames"],
+  methods: {
+    itemClick() {
+      console.log("qwerqw");
+    },
   },
 };
 </script>
