@@ -3,11 +3,7 @@ declare interface CodeMirror {
   setValue: (content: string) => void;
   getCursor: (start?: string) => CodeMirrorCursorPosition;
   getValue: (separator?: string) => string;
-  setCursor: (
-    pos: CodeMirrorCursorPosition | number,
-    ch?: number,
-    options?: object
-  ) => void;
+  setCursor: (pos: CodeMirrorCursorPosition | number, ch?: number, options?: object) => void;
 }
 
 declare interface CodeMirrorCursorPosition {
@@ -15,4 +11,4 @@ declare interface CodeMirrorCursorPosition {
   ch: number;
 }
 
-declare module "vue-codemirror";
+declare module 'vue-codemirror';

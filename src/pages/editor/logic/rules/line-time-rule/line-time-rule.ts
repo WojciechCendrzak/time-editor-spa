@@ -1,15 +1,15 @@
-import moment, { Moment } from "moment";
-import { pullTokens } from "../pull-tokens";
-import { TIME_REGEX, INTERVAL_REGEX, TIME_FORMAT } from "../../const";
-import { replaceAt } from "@/logic/strings/strings";
+import moment, { Moment } from 'moment';
+import { pullTokens } from '../pull-tokens';
+import { TIME_REGEX, INTERVAL_REGEX, TIME_FORMAT } from '../../const';
+import { replaceAt } from '@/logic/strings/strings';
 
 const T = TIME_REGEX;
 const I = INTERVAL_REGEX;
 
 export const getInterval = (from: Moment, to: Moment) => {
   const diffMs = to.diff(from);
-  const sign = diffMs >= 0 ? "+" : "-";
-  const res = `${sign}${moment.utc(Math.abs(diffMs)).format("HH:mm")}`;
+  const sign = diffMs >= 0 ? '+' : '-';
+  const res = `${sign}${moment.utc(Math.abs(diffMs)).format('HH:mm')}`;
   return res;
 };
 
@@ -20,16 +20,8 @@ export const applyFromToInterval = (line: string | undefined) => {
     const from = tokens[0];
     const to = tokens[1];
     const intervalPlaceholder = tokens[2];
-    const res = getInterval(
-      moment(from.value, TIME_FORMAT),
-      moment(to.value, TIME_FORMAT)
-    );
-    return replaceAt(
-      line,
-      intervalPlaceholder.index,
-      intervalPlaceholder.value.length,
-      res
-    );
+    const res = getInterval(moment(from.value, TIME_FORMAT), moment(to.value, TIME_FORMAT));
+    return replaceAt(line, intervalPlaceholder.index, intervalPlaceholder.value.length, res);
   } else {
     return line;
   }
@@ -41,16 +33,8 @@ export const applyLineTimeIntervalTo8 = (line: string | undefined) => {
     const from = tokens[0];
     const to = tokens[1];
     const diffTo8Placeholder = tokens[3];
-    const res = getInterval(
-      moment(from.value, TIME_FORMAT).add(8, "hours"),
-      moment(to.value, TIME_FORMAT)
-    );
-    return replaceAt(
-      line,
-      diffTo8Placeholder.index,
-      diffTo8Placeholder.value.length,
-      res
-    );
+    const res = getInterval(moment(from.value, TIME_FORMAT).add(8, 'hours'), moment(to.value, TIME_FORMAT));
+    return replaceAt(line, diffTo8Placeholder.index, diffTo8Placeholder.value.length, res);
   } else {
     return line;
   }

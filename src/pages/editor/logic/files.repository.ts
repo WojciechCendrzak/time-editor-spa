@@ -1,9 +1,9 @@
-import { database } from "../../../logic/data-base/data-base";
-import { Boards, File } from "./files.model";
-import { getNow } from "../../../logic/date-time/date-time.service";
+import { database } from '../../../logic/data-base/data-base';
+import { Boards, File } from './files.model';
+import { getNow } from '../../../logic/date-time/date-time.service';
 
-const BOARDS_NODE = "boards";
-const FILES_NODE = "files";
+const BOARDS_NODE = 'boards';
+const FILES_NODE = 'files';
 
 class FileRrepository {
   boardsRef: firebase.database.Reference;
@@ -29,12 +29,12 @@ class FileRrepository {
   }
 
   async getFiles(boardId: string) {
-    const snapshot = await this.boardsRef.once("value");
+    const snapshot = await this.boardsRef.once('value');
     const boards: Boards = snapshot.val();
-    console.log("boards", boards);
+    console.log('boards', boards);
 
     const files = boards[boardId]?.files;
-    console.log("files", files);
+    console.log('files', files);
     return files;
   }
 
@@ -51,7 +51,7 @@ class FileRrepository {
       .update({
         [fileName]: file,
       });
-    console.log("update on database");
+    console.log('update on database');
   }
 }
 

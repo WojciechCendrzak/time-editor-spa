@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
@@ -9,8 +9,8 @@ export default class StoreModel {
   fileNames: string[];
 
   constructor() {
-    this.selectedBoardName = "default";
-    this.selectedFileName = "default";
+    this.selectedBoardName = 'default';
+    this.selectedFileName = 'default';
     this.fileNames = [];
   }
 }
@@ -20,12 +20,12 @@ export const store = new Vuex.Store({
   mutations: {
     setFileNames(state, fileNames: string[]) {
       state.fileNames = fileNames;
-    }
+    },
   },
   actions: {
     setFileNames(context, fileNames: string[]) {
-      context.commit("setFileNames", fileNames);
-    }
+      context.commit('setFileNames', fileNames);
+    },
   },
-  modules: {}
+  modules: {},
 });

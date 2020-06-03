@@ -1,14 +1,11 @@
-import { isString, range, isArray } from "lodash";
+import { isString, range, isArray } from 'lodash';
 
 interface ResolvedToken {
   index: number;
   value: string;
 }
 
-export const pullTokens = (
-  line: string | undefined,
-  tokens: string[]
-): ResolvedToken[] | undefined => {
+export const pullTokens = (line: string | undefined, tokens: string[]): ResolvedToken[] | undefined => {
   if (!line || !isString(line) || !isArray(tokens)) return undefined;
 
   let tempLine = line;
@@ -18,23 +15,20 @@ export const pullTokens = (
     if (xArray) {
       const resolvedToken = {
         index: xArray.index,
-        value: xArray[0]
+        value: xArray[0],
       };
       tempLine = tempLine.replace(
         resolvedToken.value,
         range(resolvedToken.value.length)
-          .map(() => " ")
-          .join("")
+          .map(() => ' ')
+          .join('')
       );
 
       return resolvedToken;
     }
   });
 
-  const res =
-    values.filter(value => value).length === tokens.length
-      ? (values as ResolvedToken[])
-      : undefined;
+  const res = values.filter(value => value).length === tokens.length ? (values as ResolvedToken[]) : undefined;
 
   return res;
 };

@@ -9,11 +9,7 @@
       </a-col>
       <a-col :span="18">
         <a-collapse default-active-key="1">
-          <a-collapse-panel
-            key="1"
-            header="This is panel header with no arrow icon"
-            :show-arrow="false"
-          >
+          <a-collapse-panel key="1" header="This is panel header with no arrow icon" :show-arrow="false">
             <codemirror v-model="code" :options="cmOptions" ref="myCm"></codemirror>
           </a-collapse-panel>
         </a-collapse>

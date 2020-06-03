@@ -1,1 +1,1 @@
-export const getBoardName = () => "default";
+export const getBoardName = () => 'default';
