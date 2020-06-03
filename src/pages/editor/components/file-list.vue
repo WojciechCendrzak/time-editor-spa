@@ -10,21 +10,5 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { Button, List, Layout } from "ant-design-vue";
-Vue.use(Button);
-Vue.use(List);
-Vue.use(Layout);
-
-export default {
-  props: ["fileNames"],
-  methods: {
-    itemClick() {
-      console.log("qwerqw");
-    },
-  },
-};
-</script>
-
-<style lang="less"></style>
+<script src="./file-list.ts"></script>
+<style lang="less" src="./file-list.less"></style>

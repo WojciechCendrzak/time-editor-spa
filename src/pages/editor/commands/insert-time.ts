@@ -15,7 +15,7 @@ export const formatTime = (dateTime: string | null | undefined) =>
     ? moment(dateTime).format(TIME_FORMAT)
     : undefined;
 
-export const insertTime = (cm: any) => {
+export const insertTime = (cm: CodeMirror) => {
   const currentTime = `${formatTime(getCurrentTime())}\t`;
   cm.replaceSelection(currentTime);
 };

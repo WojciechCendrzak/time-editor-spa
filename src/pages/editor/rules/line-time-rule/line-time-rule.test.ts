@@ -1,4 +1,3 @@
-import { TIME_REGEX, INTERVAL_REGEX } from "../../const";
 import { applyFromToInterval } from "./line-time-rule";
 
 describe(applyFromToInterval.name, () => {

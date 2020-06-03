@@ -20,12 +20,12 @@ export const store = new Vuex.Store({
   mutations: {
     setFileNames(state, fileNames: string[]) {
       state.fileNames = fileNames;
-    },
+    }
   },
   actions: {
     setFileNames(context, fileNames: string[]) {
       context.commit("setFileNames", fileNames);
-    },
+    }
   },
-  modules: {},
+  modules: {}
 });

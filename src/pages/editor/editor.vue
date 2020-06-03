@@ -1,9 +1,7 @@
 <template>
   <div class="page-container">
     <div class="button-container">
-      <a-button type="primary">
-        Add file
-      </a-button>
+      <a-button type="primary">Add file</a-button>
     </div>
     <a-row type="flex" :gutter="16">
       <a-col :span="6">
@@ -16,11 +14,7 @@
             header="This is panel header with no arrow icon"
             :show-arrow="false"
           >
-            <codemirror
-              v-model="code"
-              :options="cmOptions"
-              ref="myCm"
-            ></codemirror>
+            <codemirror v-model="code" :options="cmOptions" ref="myCm"></codemirror>
           </a-collapse-panel>
         </a-collapse>
       </a-col>
@@ -28,110 +22,5 @@
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { codemirror } from "vue-codemirror";
-import { insertTime } from "./commands/insert-time";
-import { applyLineRules } from "./rules/line-rules";
-import FileList from "./components/file-list";
-import { Row, Col, Collapse } from "ant-design-vue";
-import {
-  getFileNames,
-  getFileContent,
-  setFileContent,
-} from "./logic/files.service";
-
-import "codemirror/lib/codemirror.css";
-
-Vue.use(Row);
-Vue.use(Col);
-Vue.use(Collapse);
-
-import "codemirror/mode/javascript/javascript.js";
-import "codemirror/theme/idea.css";
-
-export default Vue.extend({
-  data() {
-    return {
-      code: "",
-      fileNames: [],
-      cmOptions: {
-        tabSize: 4,
-        mode: "text/javascript",
-        theme: "idea",
-        lineNumbers: true,
-        line: true,
-        autofocus: true,
-        extraKeys: {
-          // "Shift-Ctrl-L": (cm) => {
-          //   console.log("L");
-          // },
-          F5: insertTime,
-        },
-      },
-    };
-  },
-  methods: {
-    onCmReady(cm) {
-      console.log("the editor is readied!", cm);
-    },
-    onCmFocus(cm) {
-      console.log("the editor is focus!", cm);
-    },
-    onCmCodeChange(newCode) {
-      console.log("this is new code", newCode);
-      this.code = newCode;
-    },
-  },
-  created: async function() {
-    const fileNames = await getFileNames();
-    // store.se
-    this.fileNames = fileNames;
-    const code = await getFileContent();
-    this.codemirror.setValue(code);
-  },
-  watch: {
-    code() {
-      const { line, ch } = this.codemirror.getCursor();
-      const content = this.codemirror.getValue();
-      const res = applyLineRules(content);
-      this.codemirror.setValue(res);
-      this.codemirror.setCursor({ line, ch });
-      setFileContent(res);
-    },
-  },
-  components: {
-    codemirror,
-    FileList,
-  },
-  computed: {
-    codemirror() {
-      return this.$refs.myCm.codemirror;
-    },
-  },
-});
-</script>
-
-<style lang="less">
-.page-container {
-  margin-left: 16px;
-  margin-right: 16px;
-
-  .ant-collapse-content-box {
-    padding: 0;
-  }
-
-  .button-container {
-    margin-bottom: 16px;
-  }
-
-  .CodeMirror {
-    min-height: 300px;
-    height: auto;
-
-    .CodeMirror-scroll {
-      min-height: 300px;
-    }
-  }
-}
-</style>
+<script src="./editor.ts"></script>
+<style lang="less" src="./editor.less"></style>
