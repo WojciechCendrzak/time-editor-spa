@@ -1,31 +1,22 @@
+//
+
 import Vue from 'vue';
-import Vuex from 'vuex';
+import Vuex, { StoreOptions } from 'vuex';
+import { filesStore } from '@/pages/editor/logic/files.store.module';
 
 Vue.use(Vuex);
 
-export default class StoreModel {
-  selectedBoardName: string;
-  selectedFileName: string;
-  fileNames: string[];
-
-  constructor() {
-    this.selectedBoardName = 'default';
-    this.selectedFileName = 'default';
-    this.fileNames = [];
-  }
+export interface RootState {
+  version: string;
 }
 
-export const store = new Vuex.Store({
-  state: new StoreModel(),
-  mutations: {
-    setFileNames(state, fileNames: string[]) {
-      state.fileNames = fileNames;
-    },
+const storeOptions: StoreOptions<RootState> = {
+  state: {
+    version: '1.0.0',
   },
-  actions: {
-    setFileNames(context, fileNames: string[]) {
-      context.commit('setFileNames', fileNames);
-    },
+  modules: {
+    files: filesStore,
   },
-  modules: {},
-});
+};
+
+export const store = new Vuex.Store<RootState>(storeOptions);
