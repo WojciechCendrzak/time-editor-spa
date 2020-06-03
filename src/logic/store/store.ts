@@ -3,16 +3,17 @@
 import Vue from 'vue';
 import Vuex, { StoreOptions } from 'vuex';
 import { filesStore } from '@/pages/editor/logic/files.store.module';
+import { getAppVersion } from '../version/version';
 
 Vue.use(Vuex);
 
 export interface RootState {
-  version: string;
+  appVersion: string;
 }
 
 const storeOptions: StoreOptions<RootState> = {
   state: {
-    version: '1.0.0',
+    appVersion: getAppVersion(),
   },
   modules: {
     files: filesStore,
