@@ -22,5 +22,5 @@
   </div>
 </template>
 
-<script src="./editor.ts"></script>
-<style lang="less" src="./editor.less"></style>
+<script src="./editor.page.ts"></script>
+<style lang="less" src="./editor.page.less"></style>

@@ -7,12 +7,12 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     name: "Editor",
-    component: () => import("../pages/editor/editor.vue")
+    component: () => import("../pages/editor/editor.page.vue")
   },
   {
     path: "/about",
     name: "About",
-    component: () => import("../pages/about/about.vue")
+    component: () => import("../pages/about/about.page.vue")
   }
 ];
 

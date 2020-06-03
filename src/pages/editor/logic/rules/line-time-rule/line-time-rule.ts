@@ -1,7 +1,7 @@
 import moment, { Moment } from "moment";
 import { pullTokens } from "../pull-tokens";
 import { TIME_REGEX, INTERVAL_REGEX, TIME_FORMAT } from "../../const";
-import { replaceAt } from "../../strings/strings";
+import { replaceAt } from "@/logic/strings/strings";
 
 const T = TIME_REGEX;
 const I = INTERVAL_REGEX;

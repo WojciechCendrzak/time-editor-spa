@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { codemirror } from "vue-codemirror";
-import { insertTime } from "./commands/insert-time";
-import { applyLineRules } from "./rules/line-rules";
+import { insertTime } from "./logic/commands/insert-time";
+import { applyLineRules } from "./logic/rules/line-rules";
 import FileList from "./components/file-list.vue";
 import { Row, Col, Collapse } from "ant-design-vue";
 import {
